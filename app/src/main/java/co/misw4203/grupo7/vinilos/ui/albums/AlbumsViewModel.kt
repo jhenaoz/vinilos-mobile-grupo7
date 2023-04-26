@@ -1,13 +1,13 @@
-package co.misw4203.grupo7.vinilos.ui.notifications
+package co.misw4203.grupo7.vinilos.ui.albums
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class NotificationsViewModel : ViewModel() {
+class AlbumsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+        value = "This is albums Fragment"
     }
     val text: LiveData<String> = _text
 }

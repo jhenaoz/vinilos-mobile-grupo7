@@ -1,4 +1,4 @@
-package co.misw4203.grupo7.vinilos.ui.dashboard
+package co.misw4203.grupo7.vinilos.ui.artists
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import co.misw4203.grupo7.vinilos.databinding.FragmentDashboardBinding
+import co.misw4203.grupo7.vinilos.databinding.FragmentArtistsBinding
 
-class DashboardFragment : Fragment() {
+class ArtistsFragment : Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
+    private var _binding: FragmentArtistsBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,14 +22,14 @@ class DashboardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
+        val artistsViewModel =
+            ViewModelProvider(this).get(ArtistsViewModel::class.java)
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentArtistsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = binding.textArtists
+        artistsViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root

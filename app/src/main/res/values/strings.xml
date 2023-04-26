@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Vinilos</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_albums">Álbumes</string>
+    <string name="title_artists">Artistas</string>
+    <string name="title_collections">Colecciones</string>
 </resources>
