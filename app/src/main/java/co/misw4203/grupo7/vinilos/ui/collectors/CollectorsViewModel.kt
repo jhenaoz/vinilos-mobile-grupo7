@@ -1,13 +1,13 @@
-package co.misw4203.grupo7.vinilos.ui.collections
+package co.misw4203.grupo7.vinilos.ui.collectors
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class CollectionsViewModel : ViewModel() {
+class CollectorsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is collections Fragment"
+        value = "This is collectors Fragment"
     }
     val text: LiveData<String> = _text
 }

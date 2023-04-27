@@ -1,4 +1,4 @@
-package co.misw4203.grupo7.vinilos.ui.brokers
+package co.misw4203.grupo7.vinilos.brokers
 
 import retrofit2.Call
 import retrofit2.Callback

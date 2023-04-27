@@ -1,4 +1,4 @@
-package co.misw4203.grupo7.vinilos.ui.collections
+package co.misw4203.grupo7.vinilos.ui.performer
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,28 +7,29 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import co.misw4203.grupo7.vinilos.databinding.FragmentCollectionsBinding
+import co.misw4203.grupo7.vinilos.databinding.FragmentPerformersBinding
 
-class CollectionsFragment : Fragment() {
+class PerformersFragment : Fragment() {
 
-    private var _binding: FragmentCollectionsBinding? = null
+    private var _binding: FragmentPerformersBinding? = null
 
+    // This property is only valid between onCreateView and
+    // onDestroyView.
     private val binding get() = _binding!!
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val collectionsViewModel =
-            ViewModelProvider(this).get(CollectionsViewModel::class.java)
+        val performersViewModel =
+            ViewModelProvider(this).get(PerformersViewModel::class.java)
 
-        _binding = FragmentCollectionsBinding.inflate(inflater, container, false)
+        _binding = FragmentPerformersBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textCollections
-        collectionsViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = binding.textPerformers
+        performersViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
@@ -38,5 +39,4 @@ class CollectionsFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }

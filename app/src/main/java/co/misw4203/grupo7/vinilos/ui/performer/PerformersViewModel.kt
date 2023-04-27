@@ -1,13 +1,13 @@
-package co.misw4203.grupo7.vinilos.ui.artists
+package co.misw4203.grupo7.vinilos.ui.performer
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class ArtistsViewModel : ViewModel() {
+class PerformersViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is artists Fragment"
+        value = "This is performers Fragment"
     }
     val text: LiveData<String> = _text
 }
