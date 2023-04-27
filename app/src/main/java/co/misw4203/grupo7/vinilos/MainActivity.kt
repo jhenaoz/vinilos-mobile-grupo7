@@ -1,8 +1,13 @@
 package co.misw4203.grupo7.vinilos
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -10,6 +15,8 @@ import androidx.navigation.ui.setupWithNavController
 import co.misw4203.grupo7.vinilos.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var permissionLauncher: ActivityResultLauncher<Array<String>>
+    private var isInternetPermissionGranted = false
 
     private lateinit var binding: ActivityMainBinding
 
@@ -18,6 +25,12 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permission ->
+            isInternetPermissionGranted = permission[Manifest.permission.INTERNET] ?: isInternetPermissionGranted
+        }
+
+        requestPermission()
 
         val navView: BottomNavigationView = binding.navView
 
@@ -31,5 +44,23 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    private fun requestPermission() {
+        isInternetPermissionGranted =
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.INTERNET
+            ) == PackageManager.PERMISSION_GRANTED
+
+        val permissionRequest: MutableList<String> = ArrayList()
+
+        if (!isInternetPermissionGranted) {
+            permissionRequest.add(Manifest.permission.INTERNET)
+        }
+
+        if (permissionRequest.isNotEmpty()) {
+            permissionLauncher.launch(permissionRequest.toTypedArray())
+        }
     }
 }
