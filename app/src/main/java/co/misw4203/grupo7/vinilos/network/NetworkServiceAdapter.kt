@@ -10,8 +10,11 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import co.misw4203.grupo7.vinilos.models.Album
+import co.misw4203.grupo7.vinilos.models.Band
 import co.misw4203.grupo7.vinilos.models.Collector
 import co.misw4203.grupo7.vinilos.models.Comment
+import co.misw4203.grupo7.vinilos.models.Musician
+import com.google.gson.Gson
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -35,7 +38,7 @@ class NetworkServiceAdapter constructor(context: Context) {
     fun getAlbums(onComplete: (resp: List<Album>) -> Unit, onError: (error: VolleyError) -> Unit) {
         requestQueue.add(
             getRequest("albums",
-                Response.Listener<String> { response ->
+                { response ->
                     val resp = JSONArray(response)
                     val list = mutableListOf<Album>()
                     for (i in 0 until resp.length()) {
@@ -55,7 +58,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                     }
                     onComplete(list)
                 },
-                Response.ErrorListener {
+                {
                     onError(it)
                 })
         )
@@ -67,7 +70,7 @@ class NetworkServiceAdapter constructor(context: Context) {
     ) {
         requestQueue.add(
             getRequest("collectors",
-                Response.Listener<String> { response ->
+                { response ->
                     Log.d("tagb", response)
                     val resp = JSONArray(response)
                     val list = mutableListOf<Collector>()
@@ -85,7 +88,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                     }
                     onComplete(list)
                 },
-                Response.ErrorListener {
+                {
                     onError(it)
                     Log.d("", it.message.toString())
                 })
@@ -99,7 +102,7 @@ class NetworkServiceAdapter constructor(context: Context) {
     ) {
         requestQueue.add(
             getRequest("albums/$albumId/comments",
-                Response.Listener<String> { response ->
+                { response ->
                     val resp = JSONArray(response)
                     val list = mutableListOf<Comment>()
                     var item: JSONObject?
@@ -117,12 +120,11 @@ class NetworkServiceAdapter constructor(context: Context) {
                     }
                     onComplete(list)
                 },
-                Response.ErrorListener {
+                {
                     onError(it)
                 })
         )
     }
-
     fun postComment(
         body: JSONObject,
         albumId: Int,
@@ -132,10 +134,65 @@ class NetworkServiceAdapter constructor(context: Context) {
         requestQueue.add(
             postRequest("albums/$albumId/comments",
                 body,
-                Response.Listener<JSONObject> { response ->
+                { response ->
                     onComplete(response)
                 },
-                Response.ErrorListener {
+                {
+                    onError(it)
+                })
+        )
+    }
+
+    fun getBands(onComplete: (resp: List<Band>) -> Unit, onError: (error: VolleyError) -> Unit) {
+        requestQueue.add(
+            getRequest("bands",
+                { response ->
+                    val resp = JSONArray(response)
+                    val list = mutableListOf<Band>()
+                    for (i in 0 until resp.length()) {
+                        val item = resp.getJSONObject(i)
+                        val gson = Gson()
+                        list.add(
+                            i,
+                            Band(
+                                id = item.getInt("id"),
+                                name = item.getString("name"),
+                                image = item.getString("image"),
+                                description = item.getString("description"),
+                                creationDate = item.getString("createdOn"),
+                            )
+                        )
+                    }
+                    onComplete(list)
+                },
+                {
+                    onError(it)
+                })
+        )
+    }
+    fun getMusicians(onComplete: (resp: List<Musician>) -> Unit, onError: (error: VolleyError) -> Unit) {
+        requestQueue.add(
+            getRequest("musician",
+                { response ->
+                    val resp = JSONArray(response)
+                    val list = mutableListOf<Musician>()
+                    for (i in 0 until resp.length()) {
+                        val item = resp.getJSONObject(i)
+                        val gson = Gson()
+                        list.add(
+                            i,
+                            Musician(
+                                id = item.getInt("id"),
+                                name = item.getString("name"),
+                                image = item.getString("image"),
+                                description = item.getString("description"),
+                                birthDate = item.getString("birthDate"),
+                            )
+                        )
+                    }
+                    onComplete(list)
+                },
+                {
                     onError(it)
                 })
         )
