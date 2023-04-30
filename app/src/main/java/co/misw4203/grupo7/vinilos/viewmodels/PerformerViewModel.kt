@@ -32,24 +32,18 @@ class PerformerViewModel (application: Application) : AndroidViewModel(applicati
     }
 
     private fun refreshDataFromNetwork() {
-        NetworkServiceAdapter.getInstance(getApplication()).getBands({
-            if (_performers.value != null){
-                _performers.value = _performers.value?.plus(it)
-            }else{
-                _performers.postValue(it)
-            }
+        NetworkServiceAdapter.getInstance(getApplication()).getBands({ bands ->
+            val performers = _performers.value ?: emptyList()
+            _performers.value = performers.plus(bands)
             _eventNetworkError.value = false
             _isNetworkErrorShown.value = false
         }, {
             _eventNetworkError.value = true
         })
 
-        NetworkServiceAdapter.getInstance(getApplication()).getMusicians({
-            if (_performers.value != null){
-                _performers.value = _performers.value?.plus(it)
-            }else{
-                _performers.postValue(it)
-            }
+        NetworkServiceAdapter.getInstance(getApplication()).getMusicians({ musicians ->
+            val performers = _performers.value ?: emptyList()
+            _performers.value = performers.plus(musicians)
             _eventNetworkError.value = false
             _isNetworkErrorShown.value = false
         }, {
