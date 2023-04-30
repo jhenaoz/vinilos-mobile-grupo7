@@ -1,4 +1,4 @@
-package co.misw4203.grupo7.vinilos
+package co.misw4203.grupo7.vinilos.ui
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import co.misw4203.grupo7.vinilos.R
 import co.misw4203.grupo7.vinilos.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -39,7 +40,10 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_albums, R.id.navigation_performers, R.id.navigation_collectors
+                R.id.navigation_home,
+                R.id.navigation_albums,
+                R.id.navigation_performers,
+                R.id.navigation_collectors
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
