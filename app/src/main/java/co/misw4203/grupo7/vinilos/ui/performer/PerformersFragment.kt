@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -20,8 +22,9 @@ class PerformersFragment : Fragment() {
     private var _binding: FragmentPerformersBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
+    private lateinit var loader: ProgressBar
     private lateinit var viewModel: PerformerViewModel
-    //private var viewModelAdapter: PerformersAdapter? = null
+    private var viewModelAdapter: PerformersAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,14 +32,15 @@ class PerformersFragment : Fragment() {
     ): View? {
         _binding = FragmentPerformersBinding.inflate(inflater, container, false)
         val view = binding.root
-        //viewModelAdapter = PerformersAdapter()
+        viewModelAdapter = PerformersAdapter()
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        loader = binding.progressBar
         recyclerView = binding.performersRv
         recyclerView.layoutManager = LinearLayoutManager(context)
-        //recyclerView.adapter = viewModelAdapter
+        recyclerView.adapter = viewModelAdapter
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -48,7 +52,8 @@ class PerformersFragment : Fragment() {
         viewModel = ViewModelProvider(this, PerformerViewModel.Factory(activity.application)).get(PerformerViewModel::class.java)
         viewModel.performers.observe(viewLifecycleOwner, Observer<List<Performer>> {
             it.apply {
-                //viewModelAdapter!!.performers = this
+                viewModelAdapter!!.performers = this
+                loader.isVisible = false
             }
         })
         viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer<Boolean> { isNetworkError ->

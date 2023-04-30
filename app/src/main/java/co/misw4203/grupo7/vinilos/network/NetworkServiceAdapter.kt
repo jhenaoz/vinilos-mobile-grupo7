@@ -20,7 +20,7 @@ import org.json.JSONObject
 
 class NetworkServiceAdapter constructor(context: Context) {
     companion object {
-        const val BASE_URL = "https://vynils-back-heroku.herokuapp.com/"
+        const val BASE_URL = "https://misw4203-mobile-vynils.herokuapp.com/"
         var instance: NetworkServiceAdapter? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
@@ -159,7 +159,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                                 name = item.getString("name"),
                                 image = item.getString("image"),
                                 description = item.getString("description"),
-                                creationDate = item.getString("createdOn"),
+                                creationDate = item.getString("creationDate"),
                             )
                         )
                     }
@@ -172,7 +172,7 @@ class NetworkServiceAdapter constructor(context: Context) {
     }
     fun getMusicians(onComplete: (resp: List<Musician>) -> Unit, onError: (error: VolleyError) -> Unit) {
         requestQueue.add(
-            getRequest("musician",
+            getRequest("musicians",
                 { response ->
                     val resp = JSONArray(response)
                     val list = mutableListOf<Musician>()
