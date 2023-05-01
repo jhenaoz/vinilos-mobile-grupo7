@@ -11,12 +11,13 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import co.misw4203.grupo7.vinilos.models.Album
 import co.misw4203.grupo7.vinilos.models.Band
-import co.misw4203.grupo7.vinilos.models.Collector
 import co.misw4203.grupo7.vinilos.models.Comment
 import co.misw4203.grupo7.vinilos.models.Musician
+import co.misw4203.grupo7.vinilos.models.Collector
 import com.google.gson.Gson
 import org.json.JSONArray
 import org.json.JSONObject
+
 
 class NetworkServiceAdapter constructor(context: Context) {
     companion object {
