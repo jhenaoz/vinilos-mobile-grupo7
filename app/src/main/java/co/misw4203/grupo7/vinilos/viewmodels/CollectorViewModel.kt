@@ -1,7 +1,6 @@
 package co.misw4203.grupo7.vinilos.viewmodels
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,8 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import co.misw4203.grupo7.vinilos.models.Collector
 import co.misw4203.grupo7.vinilos.network.NetworkServiceAdapter
 
-class CollectorViewModel(application: Application) : AndroidViewModel(application) {
-    
+class CollectorViewModel (application: Application) : AndroidViewModel(application) {
+
     private val _collectors = MutableLiveData<List<Collector>>()
 
     val collectors: LiveData<List<Collector>>
@@ -37,7 +36,6 @@ class CollectorViewModel(application: Application) : AndroidViewModel(applicatio
             _eventNetworkError.value = false
             _isNetworkErrorShown.value = false
         }, {
-            Log.d("Error", it.toString())
             _eventNetworkError.value = true
         })
     }
