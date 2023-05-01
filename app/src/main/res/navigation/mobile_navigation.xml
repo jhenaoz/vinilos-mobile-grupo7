@@ -18,14 +18,14 @@
         tools:layout="@layout/fragment_albums" />
 
     <fragment
-        android:id="@+id/navigation_artists"
-        android:name="co.misw4203.grupo7.vinilos.ui.artists.ArtistsFragment"
-        android:label="@string/title_artists"
-        tools:layout="@layout/fragment_artists" />
+        android:id="@+id/navigation_performers"
+        android:name="co.misw4203.grupo7.vinilos.ui.performer.PerformersFragment"
+        android:label="@string/title_performers"
+        tools:layout="@layout/fragment_performers" />
 
     <fragment
-        android:id="@+id/navigation_collections"
-        android:name="co.misw4203.grupo7.vinilos.ui.collections.CollectionsFragment"
-        android:label="@string/title_collections"
-        tools:layout="@layout/fragment_collections" />
+        android:id="@+id/navigation_collectors"
+        android:name="co.misw4203.grupo7.vinilos.ui.collectors.CollectorsFragment"
+        android:label="@string/title_collectors"
+        tools:layout="@layout/fragment_collectors" />
 </navigation>

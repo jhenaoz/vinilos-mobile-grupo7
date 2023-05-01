@@ -12,13 +12,13 @@
         android:title="@string/title_albums" />
 
     <item
-        android:id="@+id/navigation_artists"
+        android:id="@+id/navigation_performers"
         android:icon="@drawable/ic_baseline_music_note_24dp"
-        android:title="@string/title_artists" />
+        android:title="@string/title_performers" />
 
     <item
-        android:id="@+id/navigation_collections"
+        android:id="@+id/navigation_collectors"
         android:icon="@drawable/ic_baseline_library_music_24dp"
-        android:title="@string/title_collections" />
+        android:title="@string/title_collectors" />
 
 </menu>
