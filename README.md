@@ -8,5 +8,4 @@
 
 ## Apk
 - ### Sprint 1
-    - /bin/v1.0.0.apk
     - /apk/outputs/apk/release/app-release.apk
