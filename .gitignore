@@ -1,6 +1,13 @@
 # Gradle files
 .gradle/
-build/
+build/*
+
+# Build files
+generated/
+intermediates/
+kotlin/
+kotlinToolingMetadata/
+tmp/
 
 # Local configuration file (sdk path, etc)
 local.properties
@@ -12,7 +19,6 @@ local.properties
 captures/
 .externalNativeBuild/
 .cxx/
-*.apk
 output.json
 
 # IntelliJ
