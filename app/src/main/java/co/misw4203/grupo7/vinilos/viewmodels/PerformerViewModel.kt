@@ -6,13 +6,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import co.misw4203.grupo7.vinilos.models.Album
+import androidx.lifecycle.viewModelScope
 import co.misw4203.grupo7.vinilos.models.Performer
-import co.misw4203.grupo7.vinilos.network.NetworkServiceAdapter
+import co.misw4203.grupo7.vinilos.repositories.PerformerRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class PerformerViewModel (application: Application) : AndroidViewModel(application) {
 
     private val _performers = MutableLiveData<List<Performer>>()
+    private val performerRepository = PerformerRepository(application)
 
     val performers: LiveData<List<Performer>>
         get() = _performers
@@ -32,23 +36,23 @@ class PerformerViewModel (application: Application) : AndroidViewModel(applicati
     }
 
     private fun refreshDataFromNetwork() {
-        NetworkServiceAdapter.getInstance(getApplication()).getBands({ bands ->
-            val performers = _performers.value ?: emptyList()
-            _performers.value = performers.plus(bands)
-            _eventNetworkError.value = false
-            _isNetworkErrorShown.value = false
-        }, {
+        try {
+            viewModelScope.launch (Dispatchers.Default){
+                withContext(Dispatchers.IO){
+                    val tempPerformersList = _performers.value?.toMutableList() ?: mutableListOf()
+                    var bands = performerRepository.refreshDataBands()
+                    tempPerformersList.addAll(bands)
+                    var musicians = performerRepository.refreshDataMusicians()
+                    tempPerformersList.addAll(musicians)
+                    _performers.postValue(tempPerformersList)
+                }
+                _eventNetworkError.postValue(false)
+                _isNetworkErrorShown.postValue(false)
+            }
+        }
+        catch (e:Exception){
             _eventNetworkError.value = true
-        })
-
-        NetworkServiceAdapter.getInstance(getApplication()).getMusicians({ musicians ->
-            val performers = _performers.value ?: emptyList()
-            _performers.value = performers.plus(musicians)
-            _eventNetworkError.value = false
-            _isNetworkErrorShown.value = false
-        }, {
-            _eventNetworkError.value = true
-        })
+        }
     }
 
     fun onNetworkErrorShown() {
