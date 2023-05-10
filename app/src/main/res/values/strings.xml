@@ -4,5 +4,6 @@
     <string name="title_albums">Álbumes</string>
     <string name="title_performers">Artistas</string>
     <string name="title_collectors">Coleccionistas</string>
+    <string name="title_detail_performers">Detalle de los artistas</string>
     <string name="test_text">asjfsdjfnasdjf</string>
 </resources>
