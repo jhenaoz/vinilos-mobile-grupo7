@@ -1,8 +1,6 @@
 package co.misw4203.grupo7.vinilos.repositories
 
 import android.app.Application
-import android.content.Context
-import android.net.ConnectivityManager
 import android.util.Log
 import co.misw4203.grupo7.vinilos.models.Band
 import co.misw4203.grupo7.vinilos.models.Musician

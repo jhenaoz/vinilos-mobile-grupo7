@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.LruCache
 import co.misw4203.grupo7.vinilos.models.Band
 import co.misw4203.grupo7.vinilos.models.Musician
-import co.misw4203.grupo7.vinilos.models.Performer
 
 class CacheManager(context: Context) {
     companion object{

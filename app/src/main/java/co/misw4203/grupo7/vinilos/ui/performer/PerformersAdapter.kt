@@ -1,6 +1,6 @@
 package co.misw4203.grupo7.vinilos.ui.performer
 
-import android.content.Intent
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
@@ -14,6 +14,7 @@ import co.misw4203.grupo7.vinilos.models.Performer
 class PerformersAdapter: RecyclerView.Adapter<PerformersAdapter.PerformersViewHolder>() {
 
     var performers :List<Performer> = emptyList()
+        @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
             notifyDataSetChanged()

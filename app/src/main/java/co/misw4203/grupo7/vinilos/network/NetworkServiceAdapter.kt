@@ -45,8 +45,9 @@ class NetworkServiceAdapter constructor(context: Context) {
                 { response ->
                     val resp = JSONArray(response)
                     val list = mutableListOf<Album>()
+                    var item:JSONObject? = null
                     for (i in 0 until resp.length()) {
-                        val item = resp.getJSONObject(i)
+                        item = resp.getJSONObject(i)
                         list.add(
                             i,
                             Album(
@@ -78,8 +79,9 @@ class NetworkServiceAdapter constructor(context: Context) {
                     Log.d("tagb", response)
                     val resp = JSONArray(response)
                     val list = mutableListOf<Collector>()
+                    var item:JSONObject? = null
                     for (i in 0 until resp.length()) {
-                        val item = resp.getJSONObject(i)
+                        item = resp.getJSONObject(i)
                         list.add(
                             i,
                             Collector(
@@ -153,8 +155,9 @@ class NetworkServiceAdapter constructor(context: Context) {
                 { response ->
                     val resp = JSONArray(response)
                     val list = mutableListOf<Band>()
+                    var item:JSONObject? = null
                     for (i in 0 until resp.length()) {
-                        val item = resp.getJSONObject(i)
+                        item = resp.getJSONObject(i)
                         val gson = Gson()
                         list.add(
                             i,
@@ -249,9 +252,9 @@ class NetworkServiceAdapter constructor(context: Context) {
     private fun getAlbumsOfPerformers(response : String) : List<Album>{
         val resp = JSONArray(response)
         val list = mutableListOf<Album>()
-
+        var item:JSONObject? = null
         for (i in 0 until resp.length()) {
-            val item = resp.getJSONObject(i)
+            item = resp.getJSONObject(i)
             list.add(
                 i,
                 Album(
