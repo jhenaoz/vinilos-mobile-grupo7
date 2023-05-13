@@ -4,34 +4,19 @@ import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.util.Log
-import co.misw4203.grupo7.vinilos.database.BandDao
-import co.misw4203.grupo7.vinilos.database.MusicianDao
 import co.misw4203.grupo7.vinilos.models.Band
 import co.misw4203.grupo7.vinilos.models.Musician
 import co.misw4203.grupo7.vinilos.network.CacheManager
 import co.misw4203.grupo7.vinilos.network.NetworkServiceAdapter
 
-class PerformerRepository (val application: Application, private val musicianDao: MusicianDao, private val bandDao: BandDao) {
+class PerformerRepository (val application: Application) {
 
     suspend fun refreshDataMusicians(): List<Musician>{
-        var cached = musicianDao.getMusicians()
-        return if(cached.isNullOrEmpty()){
-            val cm = application.baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            if( cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_WIFI && cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_MOBILE){
-                emptyList()
-            } else  NetworkServiceAdapter.getInstance(application).getMusicians()
-        } else cached
-
+        return NetworkServiceAdapter.getInstance(application).getMusicians()
     }
 
     suspend fun refreshDataBands(): List<Band>{
-        var cached = bandDao.getBands()
-        return if(cached.isNullOrEmpty()){
-            val cm = application.baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            if( cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_WIFI && cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_MOBILE){
-                emptyList()
-            } else NetworkServiceAdapter.getInstance(application).getBands()
-        } else cached
+        return NetworkServiceAdapter.getInstance(application).getBands()
     }
 
     suspend fun refreshDataMusicianById(id: Int): Musician {
