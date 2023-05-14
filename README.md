@@ -8,4 +8,4 @@
 
 ## Apk
 - ### Sprint 1
-    - /apk/outputs/apk/release/app-release.apk
+    - 

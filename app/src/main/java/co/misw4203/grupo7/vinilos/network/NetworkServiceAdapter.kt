@@ -144,6 +144,23 @@ class NetworkServiceAdapter constructor(context: Context) {
         )
     }
 
+    fun postAlbum(
+        body: JSONObject,
+        onComplete: (resp: JSONObject) -> Unit,
+        onError: (error: VolleyError) -> Unit
+    ) {
+        requestQueue.add(
+            postRequest("albums/",
+                body,
+                { response ->
+                    onComplete(response)
+                },
+                {
+                    onError(it)
+                })
+        )
+    }
+
     fun getBands(onComplete: (resp: List<Band>) -> Unit, onError: (error: VolleyError) -> Unit) {
         requestQueue.add(
             getRequest("bands",
