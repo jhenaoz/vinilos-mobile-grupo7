@@ -27,9 +27,7 @@ class AddAlbumActivity : AppCompatActivity() {
     private lateinit var inputCover: TextInputEditText
     private lateinit var inputCoverLayout: TextInputLayout
     private lateinit var radioGroupGenre: RadioGroup
-    private lateinit var inputGenreLayout: TextInputLayout
     private lateinit var radioGroupRecordLabel: RadioGroup
-    private lateinit var inputRecordLabelLayout: TextInputLayout
     private lateinit var inputDescription: TextInputEditText
     private lateinit var inputDescriptionLayout: TextInputLayout
 
@@ -51,9 +49,7 @@ class AddAlbumActivity : AppCompatActivity() {
         inputCover = findViewById(R.id.album_cover)
         inputCoverLayout = findViewById(R.id.album_cover_layout)
         radioGroupGenre = findViewById(R.id.radio_group_album_genre)
-        inputGenreLayout = findViewById(R.id.album_genre_layout)
         radioGroupRecordLabel = findViewById(R.id.radio_group_album_record_label)
-        inputRecordLabelLayout = findViewById(R.id.album_record_label_layout)
         inputDescription = findViewById(R.id.album_description)
         inputDescriptionLayout = findViewById(R.id.album_description_layout)
 
@@ -136,7 +132,7 @@ class AddAlbumActivity : AppCompatActivity() {
                 { _ ->
                     Log.d("TAG", it.toString())
                     Toast.makeText(this.applicationContext, "Albúm creado correctamente", Toast.LENGTH_LONG).show()
-                    finish();
+                    finish()
                 },
                 {
                     Log.d("TAG", it.toString())

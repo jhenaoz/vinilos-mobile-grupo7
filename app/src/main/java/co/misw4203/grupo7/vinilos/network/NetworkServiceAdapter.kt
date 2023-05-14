@@ -127,6 +127,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                     onComplete(list)
                 },
                 {
+                    Log.d("", it.message.toString())
                     onError(it)
                 })
         )
