@@ -39,7 +39,7 @@ class NetworkServiceAdapter constructor(context: Context) {
         Volley.newRequestQueue(context.applicationContext)
     }
 
-    fun getAlbums(onComplete: (resp: List<Album>) -> Unit, onError: (error: VolleyError) -> Unit) {
+    suspend fun getAlbums() = suspendCoroutine<List<Album>> { cont ->
         requestQueue.add(
             getRequest("albums",
                 { response ->
@@ -61,10 +61,31 @@ class NetworkServiceAdapter constructor(context: Context) {
                             )
                         )
                     }
-                    onComplete(list)
+                    cont.resume(list)
                 },
                 {
-                    onError(it)
+                    cont.resumeWithException(it)
+                })
+        )
+    }
+    suspend fun getAlbumById(id: Int) = suspendCoroutine<Album> { cont ->
+        requestQueue.add(
+            getRequest("albums/$id",
+                { response ->
+                    val item = JSONObject(response)
+                    var album = Album(
+                        albumId = item.getInt("id"),
+                        name = item.getString("name"),
+                        cover = item.getString("cover"),
+                        recordLabel = item.getString("recordLabel"),
+                        releaseDate = item.getString("releaseDate"),
+                        genre = item.getString("genre"),
+                        description = item.getString("description")
+                    )
+                    cont.resume(album)
+                },
+                {
+                    cont.resumeWithException(it)
                 })
         )
     }
