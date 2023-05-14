@@ -33,11 +33,11 @@ class PerformersAdapter: RecyclerView.Adapter<PerformersAdapter.PerformersViewHo
         holder.viewDataBinding.also {
             it.performer = performers[position]
         }
-        /* holder.viewDataBinding.root.setOnClickListener {
+        holder.viewDataBinding.root.setOnClickListener {
             val action = PerformersFragmentDirections.actionNavigationPerformersToNavigationDetailPerformer(performers[position].id)
             // Navigate using that action
             holder.viewDataBinding.root.findNavController().navigate(action)
-        } */
+        }
     }
 
     override fun getItemCount(): Int {
