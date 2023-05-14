@@ -1,5 +1,6 @@
 package co.misw4203.grupo7.vinilos.ui.albums
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
@@ -12,6 +13,7 @@ import co.misw4203.grupo7.vinilos.models.Album
 class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumsViewHolder>() {
 
     var albums :List<Album> = emptyList()
+        @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
             //notifyDataSetChanged()

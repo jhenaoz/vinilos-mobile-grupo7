@@ -4,13 +4,5 @@ plugins {
     //id 'com.google.gms.google-services'
     id 'com.android.library' version '8.0.0' apply false
     id 'org.jetbrains.kotlin.android' version '1.8.21' apply false
-}
-
-dependencies {
-    // Import the Firebase BoM
-    //implementation platform('com.google.firebase:firebase-bom:32.0.0')
-    //implementation 'com.google.firebase:firebase-analytics-ktx'
-
-    // Add the dependencies for any other desired Firebase products
-    // https://firebase.google.com/docs/android/setup#available-libraries
+    id 'androidx.navigation.safeargs' version '2.5.0' apply false
 }
