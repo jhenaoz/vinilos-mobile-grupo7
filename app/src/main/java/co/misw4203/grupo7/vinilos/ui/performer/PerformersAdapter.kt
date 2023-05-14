@@ -14,7 +14,7 @@ class PerformersAdapter: RecyclerView.Adapter<PerformersAdapter.PerformersViewHo
     var performers :List<Performer> = emptyList()
         set(value) {
             field = value
-            notifyDataSetChanged()
+            //notifyDataSetChanged()
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PerformersViewHolder {

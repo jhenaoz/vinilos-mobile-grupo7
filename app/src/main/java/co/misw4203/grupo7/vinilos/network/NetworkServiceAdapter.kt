@@ -14,7 +14,6 @@ import co.misw4203.grupo7.vinilos.models.Band
 import co.misw4203.grupo7.vinilos.models.Comment
 import co.misw4203.grupo7.vinilos.models.Musician
 import co.misw4203.grupo7.vinilos.models.Collector
-import com.google.gson.Gson
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -35,6 +34,7 @@ class NetworkServiceAdapter constructor(context: Context) {
         // applicationContext keeps you from leaking the Activity or BroadcastReceiver if someone passes one in.
         Volley.newRequestQueue(context.applicationContext)
     }
+
 
     fun getAlbums(onComplete: (resp: List<Album>) -> Unit, onError: (error: VolleyError) -> Unit) {
         requestQueue.add(
@@ -152,7 +152,6 @@ class NetworkServiceAdapter constructor(context: Context) {
                     val list = mutableListOf<Band>()
                     for (i in 0 until resp.length()) {
                         val item = resp.getJSONObject(i)
-                        val gson = Gson()
                         list.add(
                             i,
                             Band(
@@ -179,7 +178,6 @@ class NetworkServiceAdapter constructor(context: Context) {
                     val list = mutableListOf<Musician>()
                     for (i in 0 until resp.length()) {
                         val item = resp.getJSONObject(i)
-                        val gson = Gson()
                         list.add(
                             i,
                             Musician(

@@ -14,7 +14,7 @@ class CollectorsAdapter: RecyclerView.Adapter<CollectorsAdapter.CollectorsViewHo
     var collectors :List<Collector> = emptyList()
         set(value) {
             field = value
-            notifyDataSetChanged()
+            //notifyDataSetChanged()
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CollectorsViewHolder {
