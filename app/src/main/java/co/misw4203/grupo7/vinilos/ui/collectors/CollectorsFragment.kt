@@ -29,7 +29,7 @@ class CollectorsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentCollectorsBinding.inflate(inflater, container, false)
         val view = binding.root
         viewModelAdapter = CollectorsAdapter()

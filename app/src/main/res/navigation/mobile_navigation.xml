@@ -41,4 +41,5 @@
             android:name="id"
             app:argType="integer" />
     </activity>
+
 </navigation>

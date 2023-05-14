@@ -127,6 +127,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                     onComplete(list)
                 },
                 {
+                    Log.d("", it.message.toString())
                     onError(it)
                 })
         )
@@ -139,6 +140,23 @@ class NetworkServiceAdapter constructor(context: Context) {
     ) {
         requestQueue.add(
             postRequest("albums/$albumId/comments",
+                body,
+                { response ->
+                    onComplete(response)
+                },
+                {
+                    onError(it)
+                })
+        )
+    }
+
+    fun postAlbum(
+        body: JSONObject,
+        onComplete: (resp: JSONObject) -> Unit,
+        onError: (error: VolleyError) -> Unit
+    ) {
+        requestQueue.add(
+            postRequest("albums/",
                 body,
                 { response ->
                     onComplete(response)
