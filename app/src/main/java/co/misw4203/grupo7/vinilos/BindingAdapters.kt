@@ -4,6 +4,7 @@ import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import coil.load
+import coil.request.CachePolicy
 
 
 /**
@@ -15,7 +16,10 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
         val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
         imgView.load(imgUri) {
             placeholder(R.drawable.loading_animation)
+            diskCachePolicy(CachePolicy.ENABLED)
+                .memoryCachePolicy(CachePolicy.ENABLED)
             error(R.drawable.ic_broken_image)
+
         }
     }
 }

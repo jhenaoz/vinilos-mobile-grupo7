@@ -24,4 +24,5 @@
     <string name="label_fania_records">Fania Records</string>
     <string name="text_view_radio_group_genre">Seleccionar género</string>
     <string name="text_view_radio_group_record_label">Seleccionar label</string>
+    <string name="title_detail_performers">Detalle de los artistas</string>
 </resources>

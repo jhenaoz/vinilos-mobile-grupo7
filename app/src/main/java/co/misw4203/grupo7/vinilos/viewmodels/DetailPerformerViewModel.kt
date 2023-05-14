@@ -13,13 +13,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class PerformerViewModel (application: Application) : AndroidViewModel(application) {
+class DetailPerformerViewModel (application: Application, id: Int) : AndroidViewModel(application) {
 
-    private val _performers = MutableLiveData<List<Performer>>()
+    private val _performer = MutableLiveData<Performer>()
     private val performerRepository = PerformerRepository(application)
 
-    val performers: LiveData<List<Performer>>
-        get() = _performers
+    val performer: LiveData<Performer>
+        get() = _performer
 
     private var _eventNetworkError = MutableLiveData<Boolean>(false)
 
@@ -31,6 +31,8 @@ class PerformerViewModel (application: Application) : AndroidViewModel(applicati
     val isNetworkErrorShown: LiveData<Boolean>
         get() = _isNetworkErrorShown
 
+    val id: Int = id
+
     init {
         refreshDataFromNetwork()
     }
@@ -39,19 +41,22 @@ class PerformerViewModel (application: Application) : AndroidViewModel(applicati
         try {
             viewModelScope.launch (Dispatchers.Default){
                 withContext(Dispatchers.IO){
-                    val tempPerformersList = _performers.value?.toMutableList() ?: mutableListOf()
-                    var bands = performerRepository.refreshDataBands()
-                    tempPerformersList.addAll(bands)
-                    var musicians = performerRepository.refreshDataMusicians()
-                    tempPerformersList.addAll(musicians)
-                    _performers.postValue(tempPerformersList)
+                    try {
+                        var band = performerRepository.refreshDataBandById(id)
+                        _performer.postValue(band)
+                    }catch (e:Exception){
+                        var musicians = performerRepository.refreshDataMusicianById(id)
+                        _performer.postValue(musicians)
+                    }catch (e:Exception){
+                        _eventNetworkError.postValue(true)
+                    }
                 }
                 _eventNetworkError.postValue(false)
                 _isNetworkErrorShown.postValue(false)
             }
         }
         catch (e:Exception){
-            _eventNetworkError.value = true
+            _eventNetworkError.postValue(true)
         }
     }
 
@@ -59,11 +64,11 @@ class PerformerViewModel (application: Application) : AndroidViewModel(applicati
         _isNetworkErrorShown.value = true
     }
 
-    class Factory(val app: Application) : ViewModelProvider.Factory {
+    class Factory(val app: Application, val id: Int) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(PerformerViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(DetailPerformerViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return PerformerViewModel(app) as T
+                return DetailPerformerViewModel(app, id) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }

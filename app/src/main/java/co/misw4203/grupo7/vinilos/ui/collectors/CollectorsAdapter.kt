@@ -1,5 +1,6 @@
 package co.misw4203.grupo7.vinilos.ui.collectors
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
@@ -12,6 +13,7 @@ import co.misw4203.grupo7.vinilos.models.Collector
 class CollectorsAdapter: RecyclerView.Adapter<CollectorsAdapter.CollectorsViewHolder>() {
 
     var collectors :List<Collector> = emptyList()
+        @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
             notifyDataSetChanged()

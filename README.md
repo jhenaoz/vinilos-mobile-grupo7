@@ -5,7 +5,3 @@
 - importar el proyecto en android studio
 - sync gradle dependencies
 - run
-
-## Apk
-- ### Sprint 1
-    - 
