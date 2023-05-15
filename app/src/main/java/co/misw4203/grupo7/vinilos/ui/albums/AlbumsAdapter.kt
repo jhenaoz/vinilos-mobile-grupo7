@@ -16,7 +16,7 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumsViewHolder>() {
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
-            notifyDataSetChanged()
+            //notifyDataSetChanged()
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumsViewHolder {
