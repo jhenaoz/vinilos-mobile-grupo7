@@ -10,7 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="288dp">
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="361dp"
@@ -31,8 +31,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="365dp"
-                android:layout_height="384dp">
-
+                android:layout_height="279dp">
 
                 <TextView
                     android:id="@+id/text7"
