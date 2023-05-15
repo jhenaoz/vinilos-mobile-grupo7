@@ -6,4 +6,7 @@
     <string name="title_collectors">Coleccionistas</string>
     <string name="title_detail_performers">Detalle del Artista</string>
     <string name="title_detail_albums">Detalle del Album</string>
+    <string name="genreAlbumLabel">Género:</string>
+    <string name="recordLabelAlbumLabel">Label:</string>
+    <string name="descriptionAlbumLabel">Descripción:</string>
 </resources>

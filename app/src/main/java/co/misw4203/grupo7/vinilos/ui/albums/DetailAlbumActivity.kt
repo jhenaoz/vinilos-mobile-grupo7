@@ -19,15 +19,12 @@ class DetailAlbumActivity: AppCompatActivity() {
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: DetailAlbumViewModel
-//    private var viewModelAdapter: AlbumsAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = DetailAlbumActivityBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-//        viewModelAdapter = AlbumsAdapter()
-//        onRecyclerViewCreated()
         onBindingDetailAlbumView()
     }
 
@@ -35,12 +32,6 @@ class DetailAlbumActivity: AppCompatActivity() {
         super.onDestroy()
         _binding = null
     }
-
-//    private fun onRecyclerViewCreated() {
-//        recyclerView = binding.albumsRv
-//        recyclerView.layoutManager = LinearLayoutManager(this)
-//        recyclerView.adapter = viewModelAdapter
-//    }
 
     private fun onBindingDetailAlbumView() {
         val activity = requireNotNull(this) {
@@ -54,7 +45,6 @@ class DetailAlbumActivity: AppCompatActivity() {
         viewModel.album.observe(this, Observer<Album> {
             it.apply {
                 binding.album = this
-//                viewModelAdapter!!.albums = it.albums
             }
         })
         viewModel.eventNetworkError.observe(this, Observer<Boolean> { isNetworkError ->
