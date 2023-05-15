@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.albums.AddAlbumActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/title_create_album"
+                android:textSize="24sp">
+
+            </com.google.android.material.textview.MaterialTextView>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/album_title_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:hint="@string/input_hint_album_title">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/album_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/album_cover_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:hint="@string/input_hint_album_cover">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/album_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/album_release_date_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:hint="@string/input_hint_album_release_date">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/album_release_year"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/album_genre_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:hint="@string/input_hint_album_genre">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/text_view_radio_group_genre"
+                    android:textSize="16sp">
+
+                </com.google.android.material.textview.MaterialTextView>
+
+                <RadioGroup
+                    android:id="@+id/radio_group_album_genre"
+                    android:checkedButton="@+id/radio_button_classical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RadioButton
+                        android:id="@+id/radio_button_classical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/label_classical"/>
+                    <RadioButton
+                        android:id="@+id/radio_button_salsa"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/label_salsa"/>
+                    <RadioButton
+                        android:id="@+id/radio_button_rock"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/label_rock"/>
+                    <RadioButton
+                        android:id="@+id/radio_button_folk"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/label_folk"/>
+                </RadioGroup>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/album_record_label_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:hint="@string/input_hint_album_label">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/text_view_radio_group_record_label"
+                    android:textSize="16sp">
+
+                </com.google.android.material.textview.MaterialTextView>
+
+                <RadioGroup
+                    android:id="@+id/radio_group_album_record_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checkedButton="@id/radio_button_sony_music">
+
+                    <RadioButton
+                        android:id="@+id/radio_button_sony_music"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/label_sony_music" />
+
+                    <RadioButton
+                        android:id="@+id/radio_button_emi"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/label_emi" />
+
+                    <RadioButton
+                        android:id="@+id/radio_button_discos_fuentes"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/label_discos_fuentes" />
+
+                    <RadioButton
+                        android:id="@+id/radio_button_elektra"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/label_elektra" />
+
+                    <RadioButton
+                        android:id="@+id/radio_button_fania_records"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/label_fania_records" />
+                </RadioGroup>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/album_description_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:hint="@string/input_hint_album_description">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/album_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_add_album"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/button_text_add_album"
+                android:layout_marginBottom="40dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

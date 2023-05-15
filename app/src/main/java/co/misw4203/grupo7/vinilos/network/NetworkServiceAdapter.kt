@@ -14,7 +14,6 @@ import co.misw4203.grupo7.vinilos.models.Band
 import co.misw4203.grupo7.vinilos.models.Comment
 import co.misw4203.grupo7.vinilos.models.Musician
 import co.misw4203.grupo7.vinilos.models.Collector
-import com.google.gson.Gson
 import org.json.JSONArray
 import org.json.JSONObject
 import kotlin.coroutines.resume
@@ -148,6 +147,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                     onComplete(list)
                 },
                 {
+                    Log.d("", it.message.toString())
                     onError(it)
                 })
         )
@@ -170,6 +170,23 @@ class NetworkServiceAdapter constructor(context: Context) {
         )
     }
 
+    fun postAlbum(
+        body: JSONObject,
+        onComplete: (resp: JSONObject) -> Unit,
+        onError: (error: VolleyError) -> Unit
+    ) {
+        requestQueue.add(
+            postRequest("albums/",
+                body,
+                { response ->
+                    onComplete(response)
+                },
+                {
+                    onError(it)
+                })
+        )
+    }
+
     suspend fun getBands() = suspendCoroutine<List<Band>> { cont ->
         requestQueue.add(
             getRequest("bands",
@@ -178,8 +195,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                     val list = mutableListOf<Band>()
                     var item:JSONObject? = null
                     for (i in 0 until resp.length()) {
-                        item = resp.getJSONObject(i)
-                        val gson = Gson()
+                        val item = resp.getJSONObject(i)
                         list.add(
                             i,
                             Band(

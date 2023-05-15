@@ -29,7 +29,7 @@ class PerformersFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentPerformersBinding.inflate(inflater, container, false)
         val view = binding.root
         viewModelAdapter = PerformersAdapter()
