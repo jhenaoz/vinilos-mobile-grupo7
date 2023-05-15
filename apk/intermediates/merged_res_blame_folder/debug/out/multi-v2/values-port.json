@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "co.misw4203.grupo7.vinilos.app-mergeDebugResources-51:/values-port/values-port.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\alex1\\.gradle\\caches\\transforms-3\\89238cb1c8adfd8cff30577cb035b854\\transformed\\appcompat-1.6.1\\res\\values-port\\values-port.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                }
+            ]
+        }
+    ]
+}

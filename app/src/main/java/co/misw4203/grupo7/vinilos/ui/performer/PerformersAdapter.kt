@@ -17,7 +17,7 @@ class PerformersAdapter: RecyclerView.Adapter<PerformersAdapter.PerformersViewHo
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
-            notifyDataSetChanged()
+            //notifyDataSetChanged()
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PerformersViewHolder {
