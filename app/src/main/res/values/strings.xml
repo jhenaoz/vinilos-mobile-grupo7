@@ -4,5 +4,25 @@
     <string name="title_albums">Álbumes</string>
     <string name="title_performers">Artistas</string>
     <string name="title_collectors">Coleccionistas</string>
+    <string name="title_activity_add_album">Agregar albúm</string>
+    <string name="title_create_album">Crear albúm</string>
+    <string name="input_hint_album_title">Nombre del albúm</string>
+    <string name="input_hint_album_cover">Image de portada</string>
+    <string name="input_hint_album_release_date">Fecha de lanzamiento</string>
+    <string name="input_hint_album_genre">Género</string>
+    <string name="input_hint_album_label">Label</string>
+    <string name="input_hint_album_description">Descripción</string>
+    <string name="button_text_add_album">Agregar Albúm</string>
+    <string name="label_folk">Folk</string>
+    <string name="label_rock">Rock</string>
+    <string name="label_salsa">Salsa</string>
+    <string name="label_classical">Classical</string>
+    <string name="label_sony_music">Sony Music</string>
+    <string name="label_emi">EMI</string>
+    <string name="label_discos_fuentes">Discos Fuentes</string>
+    <string name="label_elektra">Elektra</string>
+    <string name="label_fania_records">Fania Records</string>
+    <string name="text_view_radio_group_genre">Seleccionar género</string>
+    <string name="text_view_radio_group_record_label">Seleccionar label</string>
     <string name="title_detail_performers">Detalle de los artistas</string>
 </resources>
