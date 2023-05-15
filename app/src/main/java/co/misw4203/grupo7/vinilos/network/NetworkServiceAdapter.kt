@@ -14,9 +14,11 @@ import co.misw4203.grupo7.vinilos.models.Band
 import co.misw4203.grupo7.vinilos.models.Comment
 import co.misw4203.grupo7.vinilos.models.Musician
 import co.misw4203.grupo7.vinilos.models.Collector
-import com.google.gson.Gson
 import org.json.JSONArray
 import org.json.JSONObject
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 
 class NetworkServiceAdapter constructor(context: Context) {
@@ -36,14 +38,15 @@ class NetworkServiceAdapter constructor(context: Context) {
         Volley.newRequestQueue(context.applicationContext)
     }
 
-    fun getAlbums(onComplete: (resp: List<Album>) -> Unit, onError: (error: VolleyError) -> Unit) {
+    suspend fun getAlbums() = suspendCoroutine<List<Album>> { cont ->
         requestQueue.add(
             getRequest("albums",
                 { response ->
                     val resp = JSONArray(response)
                     val list = mutableListOf<Album>()
+                    var item:JSONObject? = null
                     for (i in 0 until resp.length()) {
-                        val item = resp.getJSONObject(i)
+                        item = resp.getJSONObject(i)
                         list.add(
                             i,
                             Album(
@@ -57,10 +60,31 @@ class NetworkServiceAdapter constructor(context: Context) {
                             )
                         )
                     }
-                    onComplete(list)
+                    cont.resume(list)
                 },
                 {
-                    onError(it)
+                    cont.resumeWithException(it)
+                })
+        )
+    }
+    suspend fun getAlbumById(id: Int) = suspendCoroutine<Album> { cont ->
+        requestQueue.add(
+            getRequest("albums/$id",
+                { response ->
+                    val item = JSONObject(response)
+                    var album = Album(
+                        albumId = item.getInt("id"),
+                        name = item.getString("name"),
+                        cover = item.getString("cover"),
+                        recordLabel = item.getString("recordLabel"),
+                        releaseDate = item.getString("releaseDate"),
+                        genre = item.getString("genre"),
+                        description = item.getString("description")
+                    )
+                    cont.resume(album)
+                },
+                {
+                    cont.resumeWithException(it)
                 })
         )
     }
@@ -75,8 +99,9 @@ class NetworkServiceAdapter constructor(context: Context) {
                     Log.d("tagb", response)
                     val resp = JSONArray(response)
                     val list = mutableListOf<Collector>()
+                    var item:JSONObject? = null
                     for (i in 0 until resp.length()) {
-                        val item = resp.getJSONObject(i)
+                        item = resp.getJSONObject(i)
                         list.add(
                             i,
                             Collector(
@@ -122,6 +147,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                     onComplete(list)
                 },
                 {
+                    Log.d("", it.message.toString())
                     onError(it)
                 })
         )
@@ -144,15 +170,32 @@ class NetworkServiceAdapter constructor(context: Context) {
         )
     }
 
-    fun getBands(onComplete: (resp: List<Band>) -> Unit, onError: (error: VolleyError) -> Unit) {
+    fun postAlbum(
+        body: JSONObject,
+        onComplete: (resp: JSONObject) -> Unit,
+        onError: (error: VolleyError) -> Unit
+    ) {
+        requestQueue.add(
+            postRequest("albums/",
+                body,
+                { response ->
+                    onComplete(response)
+                },
+                {
+                    onError(it)
+                })
+        )
+    }
+
+    suspend fun getBands() = suspendCoroutine<List<Band>> { cont ->
         requestQueue.add(
             getRequest("bands",
                 { response ->
                     val resp = JSONArray(response)
                     val list = mutableListOf<Band>()
+                    var item:JSONObject? = null
                     for (i in 0 until resp.length()) {
                         val item = resp.getJSONObject(i)
-                        val gson = Gson()
                         list.add(
                             i,
                             Band(
@@ -161,25 +204,47 @@ class NetworkServiceAdapter constructor(context: Context) {
                                 image = item.getString("image"),
                                 description = item.getString("description"),
                                 creationDate = item.getString("creationDate"),
+                                albums = getAlbumsOfPerformers(item.getString("albums"))
                             )
                         )
                     }
-                    onComplete(list)
+                    cont.resume(list)
                 },
                 {
-                    onError(it)
+                    cont.resumeWithException(it)
                 })
         )
     }
-    fun getMusicians(onComplete: (resp: List<Musician>) -> Unit, onError: (error: VolleyError) -> Unit) {
+
+    suspend fun getBandById(id: Int) = suspendCoroutine<Band> { cont ->
+        requestQueue.add(
+            getRequest("bands/$id",
+                { response ->
+                    val item = JSONObject(response)
+                    var band = Band(
+                        id = item.getInt("id"),
+                        name = item.getString("name"),
+                        image = item.getString("image"),
+                        description = item.getString("description"),
+                        creationDate = item.getString("creationDate"),
+                        albums = getAlbumsOfPerformers(item.getString("albums"))
+                    )
+                    cont.resume(band)
+                },
+                {
+                    cont.resumeWithException(it)
+                })
+        )
+    }
+    suspend fun getMusicians() = suspendCoroutine<List<Musician>> { cont ->
         requestQueue.add(
             getRequest("musicians",
                 { response ->
                     val resp = JSONArray(response)
                     val list = mutableListOf<Musician>()
+
                     for (i in 0 until resp.length()) {
                         val item = resp.getJSONObject(i)
-                        val gson = Gson()
                         list.add(
                             i,
                             Musician(
@@ -188,15 +253,60 @@ class NetworkServiceAdapter constructor(context: Context) {
                                 image = item.getString("image"),
                                 description = item.getString("description"),
                                 birthDate = item.getString("birthDate"),
+                                albums = getAlbumsOfPerformers(item.getString("albums"))
                             )
                         )
                     }
-                    onComplete(list)
+                    cont.resume(list)
                 },
                 {
-                    onError(it)
+                    cont.resumeWithException(it)
                 })
         )
+    }
+
+    suspend fun getMusicianById(id: Int) = suspendCoroutine<Musician> { cont ->
+        requestQueue.add(
+            getRequest("musicians/$id",
+                { response ->
+                    val item = JSONObject(response)
+                    var musician = Musician(
+                        id = item.getInt("id"),
+                        name = item.getString("name"),
+                        image = item.getString("image"),
+                        description = item.getString("description"),
+                        birthDate = item.getString("birthDate"),
+                        albums = getAlbumsOfPerformers(item.getString("albums"))
+                    )
+                    cont.resume(musician)
+                },
+                {
+                    cont.resumeWithException(it)
+                })
+        )
+    }
+
+    private fun getAlbumsOfPerformers(response : String) : List<Album>{
+        val resp = JSONArray(response)
+        val list = mutableListOf<Album>()
+        var item:JSONObject? = null
+        for (i in 0 until resp.length()) {
+            item = resp.getJSONObject(i)
+            list.add(
+                i,
+                Album(
+                    albumId = item.getInt("id"),
+                    name = item.getString("name"),
+                    cover = item.getString("cover"),
+                    description = item.getString("description"),
+                    releaseDate = item.getString("releaseDate"),
+                    genre = item.getString("genre"),
+                    recordLabel = item.getString("recordLabel")
+                )
+            )
+        }
+
+        return list
     }
 
     private fun getRequest(

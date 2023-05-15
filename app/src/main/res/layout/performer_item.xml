@@ -6,7 +6,7 @@
     <data>
         <variable
             name="performer"
-            type="co.misw4203.grupo7.vinilos.models.Performer" />
+            type="co.misw4203.grupo7.vinilos.models.Performer"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

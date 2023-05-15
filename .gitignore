@@ -2,13 +2,6 @@
 .gradle/
 build/*
 
-# Build files
-generated/
-intermediates/
-kotlin/
-kotlinToolingMetadata/
-tmp/
-
 # Local configuration file (sdk path, etc)
 local.properties
 

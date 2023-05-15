@@ -5,4 +5,5 @@ interface Performer {
     val name: String
     val image: String
     val description: String
+    val albums: List<Album>
 }

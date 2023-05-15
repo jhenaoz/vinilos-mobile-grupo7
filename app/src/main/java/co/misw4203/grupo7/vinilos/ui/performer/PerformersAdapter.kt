@@ -1,9 +1,11 @@
 package co.misw4203.grupo7.vinilos.ui.performer
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import co.misw4203.grupo7.vinilos.R
 import co.misw4203.grupo7.vinilos.databinding.PerformerItemBinding
@@ -12,9 +14,10 @@ import co.misw4203.grupo7.vinilos.models.Performer
 class PerformersAdapter: RecyclerView.Adapter<PerformersAdapter.PerformersViewHolder>() {
 
     var performers :List<Performer> = emptyList()
+        @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
-            notifyDataSetChanged()
+            //notifyDataSetChanged()
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PerformersViewHolder {
@@ -30,11 +33,11 @@ class PerformersAdapter: RecyclerView.Adapter<PerformersAdapter.PerformersViewHo
         holder.viewDataBinding.also {
             it.performer = performers[position]
         }
-        /*holder.viewDataBinding.root.setOnClickListener {
-            val action = AlbumFragmentDirections.actionAlbumFragmentToCommentFragment(performers[position].id)
-            //Navigate using that action
+        holder.viewDataBinding.root.setOnClickListener {
+            val action = PerformersFragmentDirections.actionNavigationPerformersToNavigationDetailPerformer(performers[position].id)
+            // Navigate using that action
             holder.viewDataBinding.root.findNavController().navigate(action)
-        }*/
+        }
     }
 
     override fun getItemCount(): Int {
