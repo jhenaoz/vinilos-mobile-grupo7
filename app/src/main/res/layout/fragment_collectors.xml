@@ -38,9 +38,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:clickable="true"
-            android:focusable="true"
+            android:clickable="false"
             android:contentDescription="@string/button_text_add_collector"
+            android:focusable="false"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/baseline_add_24" />
