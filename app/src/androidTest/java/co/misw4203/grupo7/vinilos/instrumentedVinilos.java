@@ -33,6 +33,8 @@ public class instrumentedVinilos {
         skipBtn2.perform(click());
         ViewInteraction skipBtn3 = onView(allOf(withId(R.id.navigation_collectors),isDisplayed()));
         skipBtn3.perform(click());
+        ViewInteraction skipBtn4 = onView(allOf(withId(R.id.collectorsRv),isDisplayed()));
+        skipBtn4.perform(click());
     }
 
 }
