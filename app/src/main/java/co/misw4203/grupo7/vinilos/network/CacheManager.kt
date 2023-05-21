@@ -2,6 +2,7 @@ package co.misw4203.grupo7.vinilos.network
 
 import android.content.Context
 import android.util.LruCache
+import co.misw4203.grupo7.vinilos.models.Album
 import co.misw4203.grupo7.vinilos.models.Band
 import co.misw4203.grupo7.vinilos.models.Musician
 
@@ -34,5 +35,14 @@ class CacheManager(context: Context) {
     }
     fun getMusician(id: Int) : Musician? {
         return if (musicians[id]!=null) musicians[id]!! else null
+    }
+    private var albums: LruCache<Int, Album> = LruCache(5)
+    fun addAlbum(id: Int, album: Album){
+        if (albums[id] == null){
+            albums.put(id, album)
+        }
+    }
+    fun getAlbum(id: Int) : Album? {
+        return if (albums[id]!=null) albums[id]!! else null
     }
 }
