@@ -67,27 +67,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                 })
         )
     }
-    suspend fun getAlbumById(id: Int) = suspendCoroutine<Album> { cont ->
-        requestQueue.add(
-            getRequest("albums/$id",
-                { response ->
-                    val item = JSONObject(response)
-                    val album = Album(
-                        albumId = item.getInt("id"),
-                        name = item.getString("name"),
-                        cover = item.getString("cover"),
-                        recordLabel = item.getString("recordLabel"),
-                        releaseDate = item.getString("releaseDate"),
-                        genre = item.getString("genre"),
-                        description = item.getString("description")
-                    )
-                    cont.resume(album)
-                },
-                {
-                    cont.resumeWithException(it)
-                })
-        )
-    }
+
 
     suspend fun getCollectors() = suspendCoroutine<List<Collector>> { cont ->
         requestQueue.add(
@@ -116,10 +96,31 @@ class NetworkServiceAdapter constructor(context: Context) {
         )
     }
 
+    suspend fun getAlbumById(id: Int) = suspendCoroutine<Album> { cont ->
+        requestQueue.add(
+            getRequest("albums/$id",
+                { response ->
+                    val item = JSONObject(response)
+                    val album = Album(
+                        albumId = item.getInt("id"),
+                        name = item.getString("name"),
+                        cover = item.getString("cover"),
+                        recordLabel = item.getString("recordLabel"),
+                        releaseDate = item.getString("releaseDate"),
+                        genre = item.getString("genre"),
+                        description = item.getString("description")
+                    )
+                    cont.resume(album)
+                },
+                {
+                    cont.resumeWithException(it)
+                })
+        )
+    }
 
     suspend fun getCollectorById(id: Int) = suspendCoroutine<Collector> { cont ->
         requestQueue.add(
-            getRequest("collector/$id",
+            getRequest("collectors/$id",
                 { response ->
                     val item = JSONObject(response)
                     val collector = Collector(
@@ -235,7 +236,7 @@ class NetworkServiceAdapter constructor(context: Context) {
             getRequest("bands/$id",
                 { response ->
                     val item = JSONObject(response)
-                    var band = Band(
+                    val band = Band(
                         id = item.getInt("id"),
                         name = item.getString("name"),
                         image = item.getString("image"),
@@ -284,7 +285,7 @@ class NetworkServiceAdapter constructor(context: Context) {
             getRequest("musicians/$id",
                 { response ->
                     val item = JSONObject(response)
-                    var musician = Musician(
+                    val musician = Musician(
                         id = item.getInt("id"),
                         name = item.getString("name"),
                         image = item.getString("image"),
