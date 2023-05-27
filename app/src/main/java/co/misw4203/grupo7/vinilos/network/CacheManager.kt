@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.LruCache
 import co.misw4203.grupo7.vinilos.models.Album
 import co.misw4203.grupo7.vinilos.models.Band
+import co.misw4203.grupo7.vinilos.models.Collector
 import co.misw4203.grupo7.vinilos.models.Musician
 
 class CacheManager(context: Context) {
@@ -44,5 +45,15 @@ class CacheManager(context: Context) {
     }
     fun getAlbum(id: Int) : Album? {
         return if (albums[id]!=null) albums[id]!! else null
+    }
+
+    private var collectors: LruCache<Int, Collector> = LruCache(5)
+    fun addCollector(id: Int, collector: Collector){
+        if (collectors[id] == null){
+            collectors.put(id, collector)
+        }
+    }
+    fun getCollector(id: Int) : Collector? {
+        return if (collectors[id]!=null) collectors[id]!! else null
     }
 }

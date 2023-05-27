@@ -6,12 +6,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import co.misw4203.grupo7.vinilos.models.Collector
-import co.misw4203.grupo7.vinilos.network.NetworkServiceAdapter
+import co.misw4203.grupo7.vinilos.repositories.CollectorRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+
+
+
 
 class CollectorViewModel (application: Application) : AndroidViewModel(application) {
 
     private val _collectors = MutableLiveData<List<Collector>>()
+    private val collectorRepository = CollectorRepository(application)
 
     val collectors: LiveData<List<Collector>>
         get() = _collectors
@@ -29,15 +37,22 @@ class CollectorViewModel (application: Application) : AndroidViewModel(applicati
     init {
         refreshDataFromNetwork()
     }
-
     private fun refreshDataFromNetwork() {
-        NetworkServiceAdapter.getInstance(getApplication()).getCollectors({
-            _collectors.postValue(it)
-            _eventNetworkError.value = false
-            _isNetworkErrorShown.value = false
-        }, {
+        try {
+            viewModelScope.launch (Dispatchers.Default){
+                withContext(Dispatchers.IO){
+                    val tempCollectorList = _collectors.value?.toMutableList() ?: mutableListOf()
+                    var collectors = collectorRepository.refreshDataCollectors()
+                    tempCollectorList.addAll(collectors)
+                    _collectors.postValue(tempCollectorList)
+                }
+                _eventNetworkError.postValue(false)
+                _isNetworkErrorShown.postValue(false)
+            }
+        }
+        catch (e:Exception){
             _eventNetworkError.value = true
-        })
+        }
     }
 
     fun onNetworkErrorShown() {

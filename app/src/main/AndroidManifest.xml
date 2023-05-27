@@ -21,6 +21,11 @@
             android:label="@string/title_activity_add_album"
             android:theme="@style/Theme.Vinilos" />
         <activity
+            android:name=".ui.collectors.AddCollectorActivity"
+            android:exported="false"
+            android:label="@string/title_activity_add_album"
+            android:theme="@style/Theme.Vinilos" />
+        <activity
             android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
@@ -30,9 +35,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.performer.DetailPerformerActivity"
-            android:screenOrientation="portrait"/>
+            />
         <activity android:name=".ui.albums.DetailAlbumActivity"
-            android:screenOrientation="portrait"/>
+            />
+        <activity android:name=".ui.collectors.DetailCollectorActivity"
+            />
     </application>
 
 </manifest>

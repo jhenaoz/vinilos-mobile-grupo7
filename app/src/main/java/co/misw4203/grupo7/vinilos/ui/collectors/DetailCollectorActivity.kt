@@ -1,4 +1,4 @@
-package co.misw4203.grupo7.vinilos.ui.albums
+package co.misw4203.grupo7.vinilos.ui.collectors
 
 import android.os.Bundle
 import android.util.Log
@@ -9,23 +9,23 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import co.misw4203.grupo7.vinilos.R
-import co.misw4203.grupo7.vinilos.databinding.DetailAlbumActivityBinding
-import co.misw4203.grupo7.vinilos.models.Album
-import co.misw4203.grupo7.vinilos.viewmodels.DetailAlbumViewModel
+import co.misw4203.grupo7.vinilos.databinding.DetailCollectorActivityBinding
+import co.misw4203.grupo7.vinilos.models.Collector
+import co.misw4203.grupo7.vinilos.viewmodels.DetailCollectorViewModel
 
 
-class DetailAlbumActivity: AppCompatActivity() {
-    private var _binding: DetailAlbumActivityBinding? = null
+class DetailCollectorActivity: AppCompatActivity() {
+    private var _binding: DetailCollectorActivityBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
-    private lateinit var viewModel: DetailAlbumViewModel
+    private lateinit var viewModel: DetailCollectorViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = DetailAlbumActivityBinding.inflate(layoutInflater)
+        _binding = DetailCollectorActivityBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        onBindingDetailAlbumView()
+        onBindingDetailCollectorView()
     }
 
     override fun onDestroy() {
@@ -33,18 +33,18 @@ class DetailAlbumActivity: AppCompatActivity() {
         _binding = null
     }
 
-    private fun onBindingDetailAlbumView() {
+    private fun onBindingDetailCollectorView() {
         val activity = requireNotNull(this) {
             "You can only access the viewModel after onActivityCreated()"
         }
-        supportActionBar?.title = getString(/* resId = */ R.string.title_detail_albums)
+        supportActionBar?.title = getString(/* resId = */ R.string.title_detail_collectors)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        val args: DetailAlbumActivityArgs by navArgs()
+        val args: DetailCollectorActivityArgs by navArgs()
         Log.d("Args", args.id.toString())
-        viewModel = ViewModelProvider(this, DetailAlbumViewModel.Factory(activity.application, args.id)).get(DetailAlbumViewModel::class.java)
-        viewModel.album.observe(this, Observer<Album> {
+        viewModel = ViewModelProvider(this, DetailCollectorViewModel.Factory(activity.application, args.id)).get(DetailCollectorViewModel::class.java)
+        viewModel.collector.observe(this, Observer<Collector> {
             it.apply {
-                binding.album = this
+                binding.collector = this
             }
         })
         viewModel.eventNetworkError.observe(this, Observer<Boolean> { isNetworkError ->

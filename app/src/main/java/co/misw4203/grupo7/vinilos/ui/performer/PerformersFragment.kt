@@ -17,6 +17,7 @@ import co.misw4203.grupo7.vinilos.databinding.FragmentPerformersBinding
 import co.misw4203.grupo7.vinilos.models.Performer
 import co.misw4203.grupo7.vinilos.viewmodels.PerformerViewModel
 
+@Suppress("DEPRECATION")
 class PerformersFragment : Fragment() {
 
     private var _binding: FragmentPerformersBinding? = null
