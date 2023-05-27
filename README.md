@@ -2,8 +2,8 @@
 
 ## Configuración Previa 
   1. Tener instalado Android Studio.
-  2. Tener Instalado Java 
-  3. 
+  2. Tener Instalado Java.
+  
 ## Instrucciones de Instalación
   1. Clonar el repositorio en entorno local usando el comando git clone https://github.com/jhenaoz/vinilos-mobile-grupo7.git
   2. Abrir Android Studio y selecciona "Abrir proyecto" para seleccionar la carpeta del proyecto clonada en el paso anterior.
