@@ -34,8 +34,6 @@
     <string name="title_detail_albums">Detalle del Album</string>
     <string name="title_detail_collectors">Detalle de Colección</string>
     <string name="genreAlbumLabel">Género:</string>
-    <string name="telephoneCollectorLabel">Teléfono:</string>
-    <string name="emailCollectorLabel">Email:</string>
     <string name="recordLabelAlbumLabel">Label:</string>
     <string name="descriptionAlbumLabel">Descripción:</string>
 </resources>
