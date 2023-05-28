@@ -37,4 +37,10 @@
     <string name="recordLabelAlbumLabel">Label:</string>
     <string name="descriptionAlbumLabel">Descripción:</string>
     <string name="imagenInterprete">Imágen Interprete:</string>
+    <string name="title_create_track">Agregar canción</string>
+    <string name="input_hint_track_name">Nombre</string>
+    <string name="input_hint_track_duration">Duración</string>
+    <string name="button_text_add_track">Agregar canción</string>
+    <string name="button_add_track_content_description">Agregar una nueva canción a un albúm</string>
+    <string name="button_list_tracks_text">Mostrar canciones</string>
 </resources>
