@@ -40,8 +40,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.performer.DetailPerformerActivity" />
-        <activity android:name=".ui.albums.DetailAlbumActivity" />
+        <activity android:name=".ui.performer.DetailPerformerActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.albums.DetailAlbumActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".ui.collectors.DetailCollectorActivity" />
     </application>
 
