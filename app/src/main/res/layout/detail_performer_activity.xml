@@ -37,6 +37,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
+            android:contentDescription="@string/imagenInterprete"
             app:imageUrl="@{performer.image}"
             app:layout_constraintBottom_toTopOf="@+id/descriptionPerformer"
             app:layout_constraintEnd_toEndOf="parent"

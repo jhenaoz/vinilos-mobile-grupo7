@@ -36,4 +36,5 @@
     <string name="genreAlbumLabel">Género:</string>
     <string name="recordLabelAlbumLabel">Label:</string>
     <string name="descriptionAlbumLabel">Descripción:</string>
+    <string name="imagenInterprete">Imágen Interprete:</string>
 </resources>
