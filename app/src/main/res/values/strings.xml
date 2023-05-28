@@ -37,7 +37,6 @@
     <string name="recordLabelAlbumLabel">Label:</string>
     <string name="descriptionAlbumLabel">Descripción:</string>
     <string name="imagenInterprete">Imágen Interprete:</string>
-    <string name="contentDescriptionEditAlbumButton">Edit album</string>
     <string name="title_create_track">Agregar canción</string>
     <string name="input_hint_track_name">Nombre</string>
     <string name="input_hint_track_duration">Duración</string>
