@@ -30,8 +30,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/linearLayout"
-                android:layout_width="365dp"
-                android:layout_height="279dp">
+                android:layout_width="372dp"
+                android:layout_height="255dp">
 
                 <TextView
                     android:id="@+id/text7"

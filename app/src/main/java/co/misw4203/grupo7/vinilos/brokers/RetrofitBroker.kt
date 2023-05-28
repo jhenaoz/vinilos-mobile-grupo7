@@ -8,8 +8,8 @@ import retrofit2.Response
 class RetrofitBroker {
     companion object{
         fun getRequest(onResponse:(resp:String)->Unit, onFailure:(resp:String)->Unit) {
-            var r = RetrofitApi.retrofitService.getProperties()
-            var p = r.enqueue(
+            val r = RetrofitApi.retrofitService.getProperties()
+            r.enqueue(
                 object : Callback<String> {
                     override fun onFailure(call: Call<String>, t: Throwable) {
                         onFailure(t.message!!)

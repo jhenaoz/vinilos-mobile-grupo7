@@ -6,13 +6,18 @@
     <string name="title_collectors">Coleccionistas</string>
     <string name="title_activity_add_album">Agregar albúm</string>
     <string name="title_create_album">Crear albúm</string>
+    <string name="title_create_collector">Crear Coleccionista</string>
     <string name="input_hint_album_title">Nombre del albúm</string>
+    <string name="input_hint_collector_title">Nombre del Coleccionista</string>
     <string name="input_hint_album_cover">Image de portada</string>
     <string name="input_hint_album_release_date">Fecha de lanzamiento</string>
+    <string name="input_hint_name_collector">Nombre</string>
     <string name="input_hint_album_genre">Género</string>
+    <string name="input_hint_collector_telephone">Teléfono</string>
     <string name="input_hint_album_label">Label</string>
     <string name="input_hint_album_description">Descripción</string>
     <string name="button_text_add_album">Agregar Albúm</string>
+    <string name="button_text_add_collector">Agregar Coleccionista</string>
     <string name="label_folk">Folk</string>
     <string name="label_rock">Rock</string>
     <string name="label_salsa">Salsa</string>
@@ -24,9 +29,18 @@
     <string name="label_fania_records">Fania Records</string>
     <string name="text_view_radio_group_genre">Seleccionar género</string>
     <string name="text_view_radio_group_record_label">Seleccionar label</string>
+    <string name="input_hint_collector_email">E-mail</string>
     <string name="title_detail_performers">Detalle del Artista</string>
     <string name="title_detail_albums">Detalle del Album</string>
+    <string name="title_detail_collectors">Detalle de Colección</string>
     <string name="genreAlbumLabel">Género:</string>
     <string name="recordLabelAlbumLabel">Label:</string>
     <string name="descriptionAlbumLabel">Descripción:</string>
+    <string name="imagenInterprete">Imágen Interprete:</string>
+    <string name="title_create_track">Agregar canción</string>
+    <string name="input_hint_track_name">Nombre</string>
+    <string name="input_hint_track_duration">Duración</string>
+    <string name="button_text_add_track">Agregar canción</string>
+    <string name="button_add_track_content_description">Agregar una nueva canción a un albúm</string>
+    <string name="button_list_tracks_text">Mostrar canciones</string>
 </resources>

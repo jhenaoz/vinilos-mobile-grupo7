@@ -1,24 +1,25 @@
 package co.misw4203.grupo7.vinilos.ui.albums
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.navArgs
-import androidx.recyclerview.widget.RecyclerView
 import co.misw4203.grupo7.vinilos.R
 import co.misw4203.grupo7.vinilos.databinding.DetailAlbumActivityBinding
-import co.misw4203.grupo7.vinilos.models.Album
+import co.misw4203.grupo7.vinilos.ui.albums.tracks.TracksListActivity
 import co.misw4203.grupo7.vinilos.viewmodels.DetailAlbumViewModel
 
 
 class DetailAlbumActivity: AppCompatActivity() {
     private var _binding: DetailAlbumActivityBinding? = null
     private val binding get() = _binding!!
-    private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: DetailAlbumViewModel
+
+    private lateinit var button: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +27,14 @@ class DetailAlbumActivity: AppCompatActivity() {
         val view = binding.root
         setContentView(view)
         onBindingDetailAlbumView()
+
+        button = view.findViewById(R.id.buttonListTracks)
+        button.setOnClickListener {
+            // Navigate to the add artist fragment when the button is clicked
+            val intent = Intent(applicationContext, TracksListActivity::class.java)
+            intent.putExtra("id", viewModel.id)
+            startActivity(intent)
+        }
     }
 
     override fun onDestroy() {
@@ -37,19 +46,19 @@ class DetailAlbumActivity: AppCompatActivity() {
         val activity = requireNotNull(this) {
             "You can only access the viewModel after onActivityCreated()"
         }
-        supportActionBar?.title = getString(R.string.title_detail_albums)
+        supportActionBar?.title = getString(/* resId = */ R.string.title_detail_albums)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val args: DetailAlbumActivityArgs by navArgs()
         Log.d("Args", args.id.toString())
         viewModel = ViewModelProvider(this, DetailAlbumViewModel.Factory(activity.application, args.id)).get(DetailAlbumViewModel::class.java)
-        viewModel.album.observe(this, Observer<Album> {
+        viewModel.album.observe(this) {
             it.apply {
                 binding.album = this
             }
-        })
-        viewModel.eventNetworkError.observe(this, Observer<Boolean> { isNetworkError ->
+        }
+        viewModel.eventNetworkError.observe(this) { isNetworkError ->
             if (isNetworkError) onNetworkError()
-        })
+        }
 
 
     }

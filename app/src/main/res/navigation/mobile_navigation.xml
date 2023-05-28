@@ -2,6 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_home">
 
     <fragment
@@ -24,7 +25,11 @@
         android:id="@+id/navigation_collectors"
         android:name="co.misw4203.grupo7.vinilos.ui.collectors.CollectorsFragment"
         android:label="@string/title_collectors"
-        tools:layout="@layout/fragment_collectors" />
+        tools:layout="@layout/fragment_collectors" >
+        <action
+            android:id="@+id/action_navigation_collectors_to_DetailedCollectorActivity"
+            app:destination="@id/DetailedCollectorActivity" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_performers"
@@ -53,5 +58,14 @@
             android:name="id"
             app:argType="integer" />
     </activity>
+    <activity android:id="@+id/DetailedCollectorActivity"
+            android:name="co.misw4203.grupo7.vinilos.ui.collectors.DetailCollectorActivity"
+            android:label="@string/title_detail_collectors"
+            tools:layout="@layout/detail_collector_activity" >
+            <argument
+                android:name="id"
+                app:argType="integer" />
+    </activity>
+
 
 </navigation>

@@ -16,7 +16,18 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.albums.tracks.AddTrackActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.albums.tracks.TracksListActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.albums.AddAlbumActivity"
+            android:exported="false"
+            android:label="@string/title_activity_add_album"
+            android:theme="@style/Theme.Vinilos" />
+        <activity
+            android:name=".ui.collectors.AddCollectorActivity"
             android:exported="false"
             android:label="@string/title_activity_add_album"
             android:theme="@style/Theme.Vinilos" />
@@ -33,6 +44,7 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.albums.DetailAlbumActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ui.collectors.DetailCollectorActivity" />
     </application>
 
 </manifest>
