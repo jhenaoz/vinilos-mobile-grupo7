@@ -16,6 +16,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.albums.tracks.AddTrackActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.albums.tracks.TracksListActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.albums.AddAlbumActivity"
             android:exported="false"
             android:label="@string/title_activity_add_album"
@@ -34,12 +40,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.performer.DetailPerformerActivity"
-            />
-        <activity android:name=".ui.albums.DetailAlbumActivity"
-            />
-        <activity android:name=".ui.collectors.DetailCollectorActivity"
-            />
+        <activity android:name=".ui.performer.DetailPerformerActivity" />
+        <activity android:name=".ui.albums.DetailAlbumActivity" />
+        <activity android:name=".ui.collectors.DetailCollectorActivity" />
     </application>
 
 </manifest>

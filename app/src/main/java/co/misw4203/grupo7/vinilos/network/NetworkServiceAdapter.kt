@@ -14,6 +14,7 @@ import co.misw4203.grupo7.vinilos.models.Band
 import co.misw4203.grupo7.vinilos.models.Comment
 import co.misw4203.grupo7.vinilos.models.Musician
 import co.misw4203.grupo7.vinilos.models.Collector
+import co.misw4203.grupo7.vinilos.models.Track
 import org.json.JSONArray
 import org.json.JSONObject
 import kotlin.coroutines.resume
@@ -322,6 +323,37 @@ class NetworkServiceAdapter constructor(context: Context) {
         }
 
         return list
+    }
+
+    fun getTracksByAlbumId(
+        albumId: Int,
+        onComplete: (resp: List<Track>) -> Unit,
+        onError: (error: VolleyError) -> Unit
+    ) {
+        requestQueue.add(
+            getRequest("albums/$albumId/tracks",
+                { response ->
+                    val resp = JSONArray(response)
+                    val list = mutableListOf<Track>()
+
+                    for (i in 0 until resp.length()) {
+                        val item = resp.getJSONObject(i)
+                        list.add(
+                            i,
+                            Track(
+                                id = item.getInt("id"),
+                                name = item.getString("name"),
+                                duration = item.getString("duration")
+                            )
+                        )
+                    }
+                    onComplete(list)
+                },
+                {
+                    Log.d("", it.message.toString())
+                    onError(it)
+                })
+        )
     }
 
     private fun getRequest(
