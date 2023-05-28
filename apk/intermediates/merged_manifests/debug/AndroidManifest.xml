@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="co.misw4203.grupo7.vinilos"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    package="co.misw4203.grupo7.vinilos">
 
     <uses-sdk
         android:minSdkVersion="21"
@@ -12,24 +10,15 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <permission
-        android:name="co.misw4203.grupo7.vinilos.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-        android:protectionLevel="signature" />
+        android:name="co.misw4203.grupo7.vinilos.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
 
     <uses-permission android:name="co.misw4203.grupo7.vinilos.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
 
     <application
-        android:allowBackup="true"
-        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-        android:dataExtractionRules="@xml/data_extraction_rules"
         android:debuggable="true"
-        android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.Vinilos"
-        android:usesCleartextTraffic="true" >
+        android:label="@string/app_name">
         <activity
-            android:name="co.misw4203.grupo7.vinilos.ui.MainActivity"
+            android:name="co.misw4203.grupo7.vinilos.ui."
             android:exported="true"
             android:label="@string/app_name" >
             <intent-filter>
@@ -39,16 +28,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="co.misw4203.grupo7.vinilos.ui.performer.DetailPerformerActivity"
-            android:screenOrientation="portrait" />
+            android:name="co.misw4203.grupo7.vinilos.ui.performer." />
         <activity
-            android:name="co.misw4203.grupo7.vinilos.ui.albums.DetailAlbumActivity"
-            android:screenOrientation="portrait" />
+            android:name="co.misw4203.grupo7.vinilos.ui.albums." />
 
         <provider
-            android:name="androidx.startup.InitializationProvider"
-            android:authorities="co.misw4203.grupo7.vinilos.androidx-startup"
-            android:exported="false" >
+            android:name="androidx.startup."
+            android:authorities="co.misw4203.grupo7.vinilos.androidx-startup">
             <meta-data
                 android:name="androidx.emoji2.text.EmojiCompatInitializer"
                 android:value="androidx.startup" />
@@ -61,18 +47,12 @@
         </provider>
 
         <uses-library
-            android:name="androidx.window.extensions"
-            android:required="false" />
+            android:name="androidx.window.extensions" />
         <uses-library
-            android:name="androidx.window.sidecar"
-            android:required="false" />
+            android:name="androidx.window.sidecar" />
 
         <receiver
-            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-            android:directBootAware="false"
-            android:enabled="true"
-            android:exported="true"
-            android:permission="android.permission.DUMP" >
+            android:name="androidx.profileinstaller.">
             <intent-filter>
                 <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
             </intent-filter>

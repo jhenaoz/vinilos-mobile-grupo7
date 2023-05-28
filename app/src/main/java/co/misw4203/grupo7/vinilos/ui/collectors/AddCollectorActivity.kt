@@ -9,12 +9,12 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
 class AddCollectorActivity : AppCompatActivity() {
-    private lateinit var inputTitle: TextInputEditText
-    private lateinit var inputTitleLayout: TextInputLayout
-    private lateinit var inputReleaseTelephone: TextInputEditText
-    private lateinit var inputReleaseEmailLayout: TextInputEditText
-    private lateinit var buttonAddCollector: MaterialButton
-    private lateinit var volleyBroker: VolleyBroker
+    private var inputTitle: TextInputEditText? = null
+    private var inputTitleLayout: TextInputLayout? = null
+    private var inputReleaseTelephone: TextInputEditText? = null
+    private var inputReleaseEmailLayout: TextInputEditText? = null
+    private var buttonAddCollector: MaterialButton? = null
+    private var volleyBroker: VolleyBroker? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,22 +30,4 @@ class AddCollectorActivity : AppCompatActivity() {
         buttonAddCollector= findViewById(R.id.button_add_collector)
 
     }
-
-        // Make inputs required
-        /*fun makeInputRequired(inputLayout: TextInputLayout, inputEditText: TextInputEditText) {
-            inputEditText.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    if (s.isNullOrEmpty()) {
-                        inputLayout.error = "Este campo es requerido"
-                    } else {
-                        inputLayout.error = null
-                    }
-                }
-
-                override fun afterTextChanged(s: Editable?) {}
-            })
-        }
-*/
-    }
+}
